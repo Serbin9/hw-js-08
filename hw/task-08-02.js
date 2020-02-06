@@ -26,12 +26,12 @@ const createGalleryList = function(arr) {
 function openModalWindow(event) {
   if (event.target.nodeName !== "IMG") return;
   modalWindov.classList.add("is-open");
-  imageInModalWindov.setAttribute("src", event.target.getAttribute("data-source"));
+  imageInModalWindov.setAttribute(
+    "src",
+    event.target.getAttribute("data-source")
+  );
   imageInModalWindov.setAttribute("alt", event.target.alt);
   window.addEventListener("keydown", handleKeyPress);
-
-
- 
 }
 
 function closeModalWondow(e) {
@@ -41,14 +41,11 @@ function closeModalWondow(e) {
   imageInModalWindov.setAttribute("alt", "");
   window.removeEventListener("keydown", handleLightboxOverlayClick);
   window.removeEventListener("keydown", handleKeyPress);
-
 }
 
 galleryList.insertAdjacentHTML("afterbegin", createGalleryList(images));
 galleryList.addEventListener("click", openModalWindow);
 modalWindov.addEventListener("click", closeModalWondow);
-
-
 
 function handleLightboxOverlayClick(e) {
   if (e.target !== e.currentTarget) {
