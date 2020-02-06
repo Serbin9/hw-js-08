@@ -28,21 +28,38 @@ function openModalWindow(event) {
   modalWindov.classList.add("is-open");
   imageInModalWindov.setAttribute("src", event.target.getAttribute("data-source"));
   imageInModalWindov.setAttribute("alt", event.target.alt);
+  window.addEventListener("keydown", handleKeyPress);
 
-  document.onkeydown = function(e) {
-    if (e.key === "Escape") {
-      closeModalWondow(e);
-    }
-    };
+
+ 
 }
 
-function closeModalWondow(event) {
+function closeModalWondow(e) {
   if (event.target.nodeName === "IMG") return;
   modalWindov.classList.remove("is-open");
   imageInModalWindov.setAttribute("src", "");
   imageInModalWindov.setAttribute("alt", "");
+  window.removeEventListener("keydown", handleLightboxOverlayClick);
+  window.removeEventListener("keydown", handleKeyPress);
+
 }
 
 galleryList.insertAdjacentHTML("afterbegin", createGalleryList(images));
 galleryList.addEventListener("click", openModalWindow);
 modalWindov.addEventListener("click", closeModalWondow);
+
+
+
+function handleLightboxOverlayClick(e) {
+  if (e.target !== e.currentTarget) {
+    return;
+  }
+  closeModalWondow();
+}
+
+function handleKeyPress(e) {
+  if (e.code !== "Escape") {
+    return;
+  }
+  closeModalWondow();
+}
