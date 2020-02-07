@@ -29,7 +29,7 @@ function openModalWindow(event) {
   imageInModalWindov.setAttribute("src", event.target.getAttribute("data-source"));
   imageInModalWindov.setAttribute("alt", event.target.alt);
   window.addEventListener("keydown", handleKeyPress);
-  modalWindov.addEventListener("click", openModalWindow);
+  modalWindov.addEventListener("click", closeModalWondow);
 
 }
 
@@ -44,7 +44,6 @@ function closeModalWondow(e) {
 
 galleryList.insertAdjacentHTML("afterbegin", createGalleryList(images));
 galleryList.addEventListener("click", openModalWindow);
-modalWindov.addEventListener("click", closeModalWondow);
 
 function handleLightboxOverlayClick(e) {
   if (e.target !== e.currentTarget) {
