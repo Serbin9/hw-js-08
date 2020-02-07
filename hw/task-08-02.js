@@ -26,12 +26,11 @@ const createGalleryList = function(arr) {
 function openModalWindow(event) {
   if (event.target.nodeName !== "IMG") return;
   modalWindov.classList.add("is-open");
-  imageInModalWindov.setAttribute(
-    "src",
-    event.target.getAttribute("data-source")
-  );
+  imageInModalWindov.setAttribute("src", event.target.getAttribute("data-source"));
   imageInModalWindov.setAttribute("alt", event.target.alt);
   window.addEventListener("keydown", handleKeyPress);
+  galleryList.addEventListener("click", openModalWindow);
+
 }
 
 function closeModalWondow(e) {
@@ -39,7 +38,7 @@ function closeModalWondow(e) {
   modalWindov.classList.remove("is-open");
   imageInModalWindov.setAttribute("src", "");
   imageInModalWindov.setAttribute("alt", "");
-  window.removeEventListener("keydown", handleLightboxOverlayClick);
+  window.removeEventListener("click", handleLightboxOverlayClick);
   window.removeEventListener("keydown", handleKeyPress);
 }
 
@@ -60,3 +59,4 @@ function handleKeyPress(e) {
   }
   closeModalWondow();
 }
+// console.log(e)
